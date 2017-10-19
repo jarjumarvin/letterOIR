@@ -5,6 +5,8 @@ import gzip
 import _pickle
 import wget
 import numpy as np
+import random
+from matplotlib import pyplot as plt
 
 
 def load_mnist():
@@ -39,3 +41,15 @@ def vectorized_result(y):
     e = np.zeros((10, 1))
     e[y] = 1.0
     return e
+
+
+def plot_prediction(x, prediction):
+    plt.imshow(x.reshape((28, 28)), cmap='gray')
+    plt.title('Network\'s Prediction: {0}'.format(prediction))
+    plt.axis('off')
+    plt.show()
+
+
+def get_random_image(data):
+    list_x = [list(t) for t in zip(*data)]
+    return list_x[0][random.randint(0, len(data))]
